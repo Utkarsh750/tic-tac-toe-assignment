@@ -8,14 +8,15 @@ function App() {
   const [oScore, setOScore] = useState(0);
 
   useEffect(() => {
-    const savedXScore = localStorage.getItem("xScore");
+    // runs once after initial render
+    const savedXScore = localStorage.getItem("xScore"); // retrieving from local storage
     const savedOScore = localStorage.getItem("oScore");
     if (savedXScore) setXScore(parseInt(savedXScore, 10));
     if (savedOScore) setOScore(parseInt(savedOScore, 10));
   }, []);
 
   useEffect(() => {
-    localStorage.setItem("xScore", xScore);
+    localStorage.setItem("xScore", xScore); // setting scores in the local storage
     localStorage.setItem("oScore", oScore);
   }, [xScore, oScore]);
 
@@ -24,7 +25,7 @@ function App() {
     if (calculateWinner(board) || board[index]) {
       return;
     }
-    newBoard[index] = isXNext ? "X" : "O";
+    newBoard[index] = isXNext ? "X" : "O"; // update cell based on whose turn it is
     setBoard(newBoard);
     setIsXNext(!isXNext);
 
